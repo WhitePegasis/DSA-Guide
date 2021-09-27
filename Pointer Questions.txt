@@ -1,0 +1,248 @@
+{
+    Prerequisite knowledge:
+
+    a) Pointer stores address.
+	eg: int a=10;
+	    int *p=&a;
+	    cout<<*p;  //gives value at a
+	    cout<<p;  //gives address of a;
+	    cout<<&p;  //gives address of p i.e memory address where the pointer is created
+   b) We can't assign address manually to a pointer, it might cause an error.
+	eg: int *p=20; //will throw an error because 20 isn't an address, generally address of memory locations are in hexadecimal
+
+   c)int a=10;
+     int* p=&a;
+	
+     In the above code, let memory address of a be 1000, and let our system provides 4bytes for an integer. Therefore if we perform:
+	p=p+1;  //p will now point to next integer address block i.e 1004
+	cout<<*p;  // this will give us garbage value since in 1004 we haven't stored anything.  
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+1.
+
+int a = 100, b = 200;
+int *p = &a, *q = &b;
+p = q;
+
+--------------------------------------------------
+2.
+
+int a = 7;
+int b = 17;
+int *c = &b;
+*c = 7;
+cout  << a << "  “ << b << endl;
+
+--------------------------------------------------
+3.
+
+ int a = 50;
+ int *ptr = &a;
+ int *q = ptr;
+ (*q)++;
+ cout << a  << endl;
+
+------------------------------------------------------
+4.
+
+ int a = 50;
+ int *ptr = &a;
+ cout << (*ptr)++ << “ “;
+ cout << a << endl;
+
+-----------------------------------------------------
+5.
+
+int *ptr = 0;
+int a = 10;
+*ptr = a;
+ cout << *ptr << endl;
+
+----------------------------------------------------
+6.
+
+int a = 7;
+int b = 17;
+int *c = &b; 
+a = *c;
+*c = *c + 1;
+cout  << a << "  " << b << endl;
+
+--------------------------------------------------
+7.
+
+float f = 10.5;
+float p = 2.5;
+float* ptr = &f;
+(*ptr)++;
+*ptr = p;
+cout << *ptr << “ “ << f << “ “ << p;
+
+-------------------------------------------------
+8.
+
+int a = 7;
+int *c = &a;
+c = c + 1;
+cout  << a << "  " << *c << endl;
+
+-----------------------------------------------
+9.Assume memory address of variable ‘a’ is : 400 (and an integer takes 4 bytes), what will be the output -
+
+int a = 7;
+int *c = &a;
+c = c + 3;
+cout  << c << endl;
+
+-------------------------------------------------
+10.Assume memory address of variable ‘a’ is : 200 and a double variable is of size 8 bytes, what will be the output -
+
+double a = 10.54;
+double *d = &a;
+d = d + 1;
+cout  << d << endl;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	Prerequisite knowledge:
+
+	a) int a[10] //this array will create a block of size 40(taking integer size as 4 bytes)
+
+	b) for an array a[10] ,  both a and &a will provide same vaue i.e address of first element of array
+
+	c) int a[5]={1,2,3,4,5};
+		cout<< *a<<" , "<<*(a+1);  // (a+1) is address of second element so *(a+1) will return 2 
+		[Note: *(memory address) , this is called derefrencing i.e in simple words using memory address to get the value at that address]
+
+	d)once an array is declared we can't change its address unlike in pointer.
+		eg: int arr[]={1,2,3,4};
+			arr=arr+1;  //will throw an error
+			arr++;	  //will throw an error
+			*(arr)++ //will increase first element by 1 i.e now array will be {2,2,3,4}
+
+		int *p=arr;    //p will point to first element
+		p=arr+1;       //p will point to second element
+				i.e you can change memory address given to a pointer whenever you want but, you can't change any array elements address.
+
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+11.Assume integer takes 4 bytes and integer pointer 8 bytes.
+
+int a[5];
+int *c;
+cout << sizeof(a) << “ “ << sizeof(c);
+
+-----------------------------------------------------
+12.
+
+int a[] = {1, 2, 3, 4};
+cout << *(a) << " " << *(a+1);
+
+------------------------------------------------------
+13.Assume that address of 0th index of array ‘a’ is : 200.
+What is the output -
+
+int a[6] = {1, 2, 3};
+cout << a << “ “ << &a;
+
+--------------------------------------------------------
+14.Assume that address of 0th index of array ‘a’ is : 200. What is the output -
+
+int a[6] = {1, 2, 3};
+cout << (a + 2);
+
+---------------------------------------------------------
+15.Assume address of 0th index of array 'a' is 200.
+What is the output -
+
+int a[6] = {1, 2, 3};
+int *b = a;
+cout << b[2];
+
+------------------------------------------------------------
+16.Assume address of 0th index of array 'a' is 200.
+What is the output -
+
+int a[] = {1, 2, 3, 4, 5};
+cout << *(a) << " " << *(a + 4);
+
+------------------------------------------------------------
+17.
+
+int a[] = {1, 2, 3, 4};
+int *p = a++;
+cout << *p << endl;
+
+--------------------------------------------------------------------------------------------------------------------------------------
+{
+	Prerequisite Knowledge: 
+	
+     -> In case of a character array pointer behaves a bit differently
+	 
+	a)char ch='a';
+		cout<<ch;	//wont print ch's address but the value itself
+
+	b)char a[]="spsr"
+		cout<<a;	//will print spsr
+	   i.e cout instead of printing address prints value till it finds null pointer. (Every string ends with a null pointer(\0),
+	  that's how a compiler understands its an end of the string)
+
+
+	c)char a[]="spsr";
+	  char* p=&a[0]; 	
+	  cout<<p;	//will print the whole string("spsr") i.e till it finds null pointer 
+	  cout<<*p;	// will print s, i.e only the value it is pointing
+	  cout<<*a;	//will print s, i.e only the value it is pointing. Remember derefrencing?  *(memory address)
+	  cout<<p[1];	// will print p
+	  cout<<a[1];	// will print p
+
+	  i.e in short if we try to print address it will print whole string till it finds null pointer, 
+	   and if we use pointer then it will print only the value it is pointing.
+
+	d) char s= 'h';
+	   char *p = &s;
+	   cout << s << " " << *p<<endl; 	//will print= h h
+
+	d) So ways to initialize a character pointer-
+		char s[]= "hello";
+		char *p = s; or char*p=&s[0];
+		
+		Note: char *p=&s; 	//wrong declaration coz s isnt an address in case of character array
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+18.
+
+ char ch = 'a';
+ char* ptr = &ch;
+ ch++;
+ cout << *ptr << endl;
+
+----------------------------------------------------------------
+19.Assume address of 0th index of array ‘b’ is 200. What is the output -
+
+char b[] = "xyz";
+char *c = &b[0];
+cout << c << endl;
+
+--------------------------------------------------------------
+20.
+
+Assume address of 0th index of array ‘b’ is 200. What is the output -
+char b[] = "xyz";
+char *c = &b[0];
+c++;
+cout << c << endl;
+
+
+
+--------------------------------------------------------------
+21.
+
+char s[]= "hello";
+char *p = s;
+cout << s[0] << " " << p[0];
