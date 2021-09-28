@@ -125,6 +125,7 @@ cout  << d << endl;
 		p=arr+1;       //p will point to second element
 				i.e you can change memory address given to a pointer whenever you want but, you can't change any array elements address.
 
+	e)in case of a pointer a[5] is same as  *(a+5)
 }
 
 
@@ -210,7 +211,7 @@ cout << *p << endl;
 		char s[]= "hello";
 		char *p = s; or char*p=&s[0];
 		
-		Note: char *p=&s; 	//wrong declaration coz s isnt an address in case of character array
+		Note: char *p=&s; 	//wrong declaration coz s itself is an address in case of character array, so &s means addres of a address which makes no sense. 
 }
 
 
@@ -246,3 +247,114 @@ cout << c << endl;
 char s[]= "hello";
 char *p = s;
 cout << s[0] << " " << p[0];
+
+------------------------------------------------------------------------------------------------------------------------------------
+{
+	Prerequisite Knowledge:
+
+	1. int a=10;
+	   int *p=&a;
+	   p=p+1;	//now p is not pointing a
+	   *p=30;   	//it won't afect a as now p is not pointing a
+	   cout<<a;	//output=10
+
+	2. When we pass an array to a function as a parameter , other function receives it as a pointer.
+
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+22. 
+
+void changeSign(int *p){
+  *p = (*p)  *  -1;
+}
+
+int main(){
+  int a = 10;
+  changeSign(&a);
+  cout << a << endl;
+}
+
+------------------------------------------------------------
+23.
+
+void fun(int a[]) {
+    cout << a[0] << " ";
+}
+
+int main() {
+    int a[] = {1, 2, 3, 4};
+    fun(a + 1);
+    cout << a[0];
+}
+
+-----------------------------------------------------------
+24.
+
+void square(int *p){
+ int a = 10;
+ p = &a;
+ *p = (*p) * (*p);
+}
+
+int main(){
+ int a = 10;
+ square(&a);
+ cout << a << endl;
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+25.
+
+int a = 10;
+int *p = &a;
+int **q = &p;
+int b = 20;
+*q = &b;
+(*p)++;
+cout << a << " " << b << endl;
+
+-----------------------------------------------------------------
+26.
+
+int a = 100;
+int *p = &a;
+int **q = &p;
+int b = (**q)++ + 4;
+cout << a << " " << b << endl;
+
+------------------------------------------------------------------
+27.
+
+int a = 100;
+  int *p = &a;
+  int **q = &p;
+  int b = (**q)++;
+  int *r = *q;
+  (*r)++;
+  cout << a << " " << b << endl;
+
+-----------------------------------------------------------------
+28.
+
+void increment(int **p){
+  (**p)++;
+}
+
+int main(){
+ int num = 10;
+ int *ptr = &num;
+ increment(&ptr);
+ cout << num << endl;
+}
